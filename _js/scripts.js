@@ -111,6 +111,7 @@ $(document).ready(function() {
   //Parallax
   setTimeout(function() {
     $('#data-area').parallax({imageSrc: '_img/cidadeparallax.png'});
+    $('#apply-area').parallax({imageSrc: '_img/pattern.png'});
   }, 200);
 
 });
