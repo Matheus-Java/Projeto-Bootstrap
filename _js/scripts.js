@@ -1,5 +1,5 @@
-$(document).ready(function() {
-  
+$(document).ready(function () {
+
   //Progress bar
   let containerA = document.getElementById("circleA");
 
@@ -8,11 +8,11 @@ $(document).ready(function() {
     color: '#64DAF9',
     strokeWidth: 8,
     duration: 1400,
-    from: {color: '#AAA'},
-    to: {color: '#65DAF9'},
+    from: { color: '#AAA' },
+    to: { color: '#65DAF9' },
 
-    step: function(state, circle) {
-      
+    step: function (state, circle) {
+
       circle.path.setAttribute('stroke', state.color);
 
       let value = Math.round(circle.value() * 60);
@@ -30,11 +30,11 @@ $(document).ready(function() {
     color: '#64DAF9',
     strokeWidth: 8,
     duration: 1600,
-    from: {color: '#AAA'},
-    to: {color: '#65DAF9'},
+    from: { color: '#AAA' },
+    to: { color: '#65DAF9' },
 
-    step: function(state, circle) {
-      
+    step: function (state, circle) {
+
       circle.path.setAttribute('stroke', state.color);
 
       let value = Math.round(circle.value() * 254);
@@ -52,11 +52,11 @@ $(document).ready(function() {
     color: '#64DAF9',
     strokeWidth: 8,
     duration: 2000,
-    from: {color: '#AAA'},
-    to: {color: '#65DAF9'},
+    from: { color: '#AAA' },
+    to: { color: '#65DAF9' },
 
-    step: function(state, circle) {
-      
+    step: function (state, circle) {
+
       circle.path.setAttribute('stroke', state.color);
 
       let value = Math.round(circle.value() * 32);
@@ -74,11 +74,11 @@ $(document).ready(function() {
     color: '#64DAF9',
     strokeWidth: 8,
     duration: 2200,
-    from: {color: '#AAA'},
-    to: {color: '#65DAF9'},
+    from: { color: '#AAA' },
+    to: { color: '#65DAF9' },
 
-    step: function(state, circle) {
-      
+    step: function (state, circle) {
+
       circle.path.setAttribute('stroke', state.color);
 
       let value = Math.round(circle.value() * 5243);
@@ -94,10 +94,10 @@ $(document).ready(function() {
   let dataAreaOffset = $('#data-area').offset();
   let stop = 0;
 
-  $(window).scroll(function(e) {
+  $(window).scroll(function (e) {
     let scroll = $(window).scrollTop();
 
-    if(scroll > (dataAreaOffset.top - 500) && stop == 0){
+    if (scroll > (dataAreaOffset.top - 500) && stop == 0) {
 
       circleA.animate(1.0);
       circleB.animate(1.0);
@@ -109,13 +109,13 @@ $(document).ready(function() {
   });
 
   //Parallax
-  setTimeout(function() {
-    $('#data-area').parallax({imageSrc: '_img/cidadeparallax.png'});
-    $('#apply-area').parallax({imageSrc: '_img/pattern.png'});
+  setTimeout(function () {
+    $('#data-area').parallax({ imageSrc: '_img/cidadeparallax.png' });
+    $('#apply-area').parallax({ imageSrc: '_img/pattern.png' });
   }, 200);
 
   //Filtro do portfólio
-  $('.filter-btn').on('click', function(){
+  $('.filter-btn').on('click', function () {
 
     let type = $(this).attr('id');
     let boxes = $('.project-box');
@@ -123,35 +123,70 @@ $(document).ready(function() {
     $('.main-btn').removeClass('active');
     $(this).addClass('active');
 
-    if(type == 'dsg-btn'){
+    if (type == 'dsg-btn') {
       eachBoxes('dsg', boxes);
 
-    }else if(type == 'dev-btn'){
+    } else if (type == 'dev-btn') {
       eachBoxes('dev', boxes);
 
-    }else if(type == 'seo-btn'){
+    } else if (type == 'seo-btn') {
       eachBoxes('seo', boxes);
 
-    }else{
+    } else {
       eachBoxes('all', boxes);
     }
 
   });
   // Função para filtrar as box
-  function eachBoxes(type, boxes){
+  function eachBoxes(type, boxes) {
 
-    if(type == 'all'){
+    if (type == 'all') {
       $(boxes).fadeIn();
-    } else{
-      $(boxes).each(function(){
-        if(!$(this).hasClass(type)){
+    } else {
+      $(boxes).each(function () {
+        if (!$(this).hasClass(type)) {
           $(this).fadeOut('slow');
-        }else{
+        } else {
           $(this).fadeIn();
         }
       });
     }
 
   }
+
+  // Scroll para seções
+  let navBtn = $('.nav-item');
+
+  let bannerSection = $('#main-slide');
+  let aboutSection = $('#about-area');
+  let servicesSection = $('#services-area');
+  let teamSection = $('#team-area');
+  let portfolioSection = $('#portfolio-area');
+  let contactSection = $('#contact-area');
+
+  let scrollTo = '';
+
+  $(navBtn).click(function () {
+    let btnId = $(this).attr('id');
+
+    if (btnId == 'about-menu') {
+      scrollTo = aboutSection;
+    } else if (btnId == 'services-menu') {
+      scrollTo = servicesSection;
+    } else if (btnId == 'team-menu') {
+      scrollTo = teamSection;
+    } else if (btnId == 'portfolio-menu') {
+      scrollTo = portfolioSection;
+    } else if (btnId == 'contact-menu') {
+      scrollTo = contactSection;
+    } else if (btnId == 'home-menu') {
+      scrollTo == bannerSection;
+    }
+
+    $([document.documentElement, document.body]).animate({
+      scrollTop: $(scrollTo).offset().top - 70
+    }, 1500);
+
+  });
 
 });
