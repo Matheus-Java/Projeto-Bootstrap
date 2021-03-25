@@ -110,8 +110,8 @@ $(document).ready(function () {
 
   //Parallax
   setTimeout(function () {
-    $('#data-area').parallax({ imageSrc: '_img/cidadeparallax.png' });
-    $('#apply-area').parallax({ imageSrc: '_img/pattern.png' });
+    $('#data-area').parallax({ imageSrc: 'img/cidadeparallax.png' });
+    $('#apply-area').parallax({ imageSrc: 'img/pattern.png' });
   }, 200);
 
   //Filtro do portfólio
